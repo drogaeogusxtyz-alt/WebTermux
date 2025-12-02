@@ -1,0 +1,223 @@
+:root {
+  --azul-neon: #551A8B;
+  --pessego: #CDB7B5;
+  --fundo: #0d0d15;
+  --claro: #ffffff;
+  --cinza: #a0a0c0;
+  --sombra: 0 0 20px rgba(85, 26, 139, .6);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  overflow-x: hidden;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--fundo);
+  color: var(--claro);
+  line-height: 1.6;
+  scroll-behavior: smooth;
+}
+
+/*header {
+  text-align: center;
+  padding: 120px 20px 80px;
+  background: linear-gradient(135deg, var(--azul-neon), var(--pessego));
+  background-size: 200% 200%;
+  animation: fundoPulse 8s ease infinite;
+  position: relative;
+}*/
+
+/*header .ascii {
+  padding: 120px 20px 80px;
+  background: linear-gradient(to right, #B23AEE, #551A8B);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: fundoPulse 8s ease infinite;
+  position: relative;
+  text-align: center;
+}*/
+
+header .ascii-mask {
+  max-width: 100%;
+  width: 100%;
+  min-height: 200px; /* garante altura visível */
+  background: linear-gradient(to left, #551A8B, #a0a0c0, #ffffff, #A020F0, #473C8B); /* cor ou degradê */
+  -webkit-mask-image: url('cab.png');
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+    /* =====  fade-in  ===== */
+  opacity: 0;              /* começa invisível */
+  animation: fadeIn 1s forwards; /* 1 s de duração, permanece no final */
+}
+
+@keyframes fundoPulse {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+h1 {
+  opacity: 0;              /* começa invisível */
+  animation: fadeIn 1s forwards; /* 1 s de duração, permanece no final */
+  text-align: center;
+  font-size: 2.8rem;
+  letter-spacing: 1px;
+  text-shadow: 0 0 15px rgba(85, 26, 139, .6);
+  margin-bottom: 10px;
+}
+
+header p {
+  text-align: center;
+  font-size: 1.2rem;
+  color: var(--claro);
+  opacity: 0;
+  animation: opap 1s forwards; /* 1 s */
+}
+
+/*header h1 {
+  font-size: 1.2rem;
+  color: var(--claro);
+  opacity: .9;
+}*/
+
+main {
+  max-width: 900px;
+  margin: auto;
+  padding: 60px 20px;
+}
+
+.card {
+  background: rgba(255, 255, 255, .04);
+  border-radius: 16px;
+  padding: 40px;
+  margin-bottom: 40px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, .06);
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity .8s ease, transform .8s ease;
+}
+
+.card.aparece {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+h2 {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+  color: var(--azul-neon);
+}
+
+ul, ol {
+  margin-left: 20px;
+  color: var(--cinza);
+}
+
+.btn {
+  display: inline-block;
+  margin: 25px 0 10px;
+  padding: 14px 32px;
+  background: linear-gradient(90deg, var(--pessego), var(--azul-neon));
+  border-radius: 30px;
+  color: var(--claro);
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: var(--sombra);
+  transition: transform .3s ease, box-shadow .3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 30px rgba(0, 198, 255, .55);
+}
+
+.btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;   /* corrigido */
+  height: 100%;  /* corrigido */
+  background: rgba(255, 255, 255, .15);
+  transform: rotate(30deg);
+  transition: all .6s ease;
+}
+
+.btn:hover::after {
+  transform: translateY(100%) rotate(30deg);
+}
+
+.depo {
+  background: rgba(255, 255, 255, .03);
+  border-left: 4px solid var(--pessego);
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 8px;
+}
+
+.depo p {
+  margin: 0;
+  font-style: italic;
+}
+
+.depo strong {
+  display: block;
+  margin-top: 10px;
+  color: var(--azul-neon);
+}
+
+footer {
+  text-align: center;
+  padding: 30px 10px;
+  font-size: .9rem;
+  color: var(--cinza);
+}
+
+.icones {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 20px;
+  flex-wrap: wrap; /* evita overflow em telas pequenas */
+}
+
+.icones svg {
+  width: 28px;
+  height: 28px;
+  fill: var(--azul-neon);
+  opacity: .8;
+  transition: opacity .3s ease;
+}
+
+.icones svg:hover {
+  opacity: 1;
+}
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 2.2rem;
+  }
+  .card {
+    padding: 30px 20px;
+  }
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }       /* vai de 0 → 1 */
+}
+
+@keyframes opap {
+  to { opacity: .9; }
+}
